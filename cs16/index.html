@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cs1.6下载带机器人-经典半条命反恐精英单机版与配置指南</title>
+    <meta name="description" content="提供CS1.6下载带机器人的完整安装包，包含经典爆破模式、人质救援模式及单机AI对战功能。详细介绍游戏配置要求、启动参数设置及汉化补丁使用方法，助您重温经典FPS射击体验。">
+    <meta name="keywords" content="cs1.6下载带机器人,CS1.6单机版,反恐精英1.6,CS1.6机器人补丁,CS1.6汉化,CS1.6配置教程">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-dark: #1a1a1a;
+            --bg-card: #2d2d2d;
+            --text-light: #ecf0f1;
+            --text-gray: #bdc3c7;
+            --success-color: #27ae60;
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid #444;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            padding: 80px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(231, 76, 60, 0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--bg-dark);
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 60px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 80px 0;
+            background-color: #222;
+        }
+
+        .download-box {
+            background: linear-gradient(145deg, #2d2d2d, #252525);
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .game-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #333;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+            border: 2px solid #444;
+        }
+
+        .version-tag {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .download-info {
+            margin: 25px 0;
+            color: var(--text-gray);
+        }
+
+        .download-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-info li::before {
+            content: '•';
+            color: var(--accent-color);
+        }
+
+        .download-btn {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            padding: 60px 0;
+        }
+
+        .guide-content {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .guide-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .guide-steps {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+
+        .step-list li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .guide-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .guide-table th, .guide-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #444;
+        }
+
+        .guide-table th {
+            color: var(--accent-color);
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 60px 0;
+            background-color: #222;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #444;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-light);
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--text-gray);
+            display: none;
+            padding-left: 20px;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-item:not(.active) .faq-question::after {
+            content: '+';
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .header-inner {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <span>CS1.6</span> 经典复刻站
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#download">下载中心</a></li>
+                    <li><a href="#guide">安装指南</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>重温经典：CS1.6 下载带机器人</h1>
+                <p>无需联网，即刻体验经典的爆破模式与人质救援。包含智能AI机器人对战系统，完美还原90年代FPS射击乐趣。</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">立即下载客户端</a>
+                    <a href="#guide" class="btn btn-outline">查看配置教程</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>为什么选择本站版本？</h2>
+                    <p>专为怀旧玩家打造的优化版本</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="card-icon">🤖</div>
+                        <h3>智能机器人系统</h3>
+                        <p>内置多款经典地图（de_dust2, cs_assault等）的强力AI机器人，支持难度选择，提供媲美真人的对战体验。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🛡️</div>
+                        <h3>免安装免配置</h3>
+                        <p>整合了Steam客户端库、反作弊系统及最新补丁，下载即玩，无需复杂的注册与联网验证。</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🌐</div>
+                        <h3>全地图中文版</h3>
+                        <p>内置全中文地图包与快捷键汉化，界面清晰，操作便捷，让语言不再是障碍。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="download-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>客户端下载</h2>
+                    <p>安全、稳定、高速的下载服务</p>
+                </div>
+                <div class="download-box">
+                    <div class="version-tag">v1.6.0.34 官方整合版</div>
+                    <div class="game-icon">🔫</div>
+                    <h3>反恐精英 1.6 单机版</h3>
+                    <p style="color: var(--text-gray); margin-top: 10px;">大小：约 600 MB | 格式：.exe 安装包</p>
+                    
+                    <ul class="download-info">
+                        <li>✓ 完整整合 Steam 环境库</li>
+                        <li>✓ 已集成机器人对战插件</li>
+                        <li>✓ 支持鼠标灵敏度调节</li>
+                        <li>✓ 内置地图与材质包</li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary download-btn" onclick="startDownload()">开始下载 (高速)</a>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 15px;">点击按钮后请耐心等待 5 秒钟，下载将自动开始</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="guide-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>安装与启动指南</h2>
+                    <p>三步快速上手，解决常见启动问题</p>
+                </div>
+                <div class="guide-content">
+                    <div class="guide-text">
+                        <h3>系统配置要求</h3>
+                        <p style="color: var(--text-gray); margin-bottom: 20px;">CS1.6 对硬件要求极低，适合绝大多数旧电脑及现代设备运行。</p>
+                        <ul class="step-list" style="color: var(--text-gray);">
+                            <li style="margin-bottom: 10px;"><strong>操作系统：</strong> Windows 7 / 10 / 11 (32位或64位均可)</li>
+                            <li style="margin-bottom: 10px;"><strong>处理器：</strong> Intel Pentium III 500MHz 或 AMD 同等性能芯片</li>
+                            <li style="margin-bottom: 10px;"><strong>内存：</strong> 128 MB RAM (推荐 256 MB)</li>
+                            <li><strong>显卡：</strong> 支持 DirectX 7.0 的显卡 (集成显卡完全兼容)</li>
+                        </ul>
+                    </div>
+                    <div class="guide-steps">
+                        <h3>标准安装流程</h3>
+                        <ul class="step-list">
+                            <li data-step="1">运行下载的 <code>CS1.6_Setup.exe</code> 安装程序。</li>
+                            <li data-step="2">按照提示选择安装路径（建议安装在非系统盘），点击“下一步”直至完成。</li>
+                            <li data-step="3">安装完成后，在桌面找到快捷方式或进入游戏目录双击 <code>cstrike.exe</code> 启动游戏。</li>
+                        </ul>
+                        <br>
+                        <h3>启动参数设置</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem;">如需强制单机模式或修改分辨率，请在游戏快捷方式属性的目标一栏添加以下参数：</p>
+                        <div style="background: #111; padding: 10px; border-radius: 4px; font-family: monospace; color: var(--accent-color); font-size: 0.9rem; margin-top: 5px;">
+                            -console -novid -nojoy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常见问题解答</h2>
+                </div>
+                <div class="grid-3">
+                    <div class="faq-item">
+                        <div class="faq-question">下载后无法启动怎么办？</div>
+                        <div class="faq-answer">请检查是否安装了 .NET Framework 组件，建议安装最新版本。如遇闪退，请尝试以管理员身份运行游戏。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">机器人数量太少或太弱？</div>
+                        <div class="faq-answer">进入游戏控制台，输入 <code>mp_limitteams 0</code> 和 <code>mp_autoteambalance 0</code>，然后输入 <code>mp_friendlyfire 0</code> 即可开启自由对战模式。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">游戏画面模糊或显示不全？</div>
+                        <div class="faq-answer">进入设置菜单，将视频分辨率调至当前屏幕推荐分辨率，并确保显卡驱动为最新版本。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 CS1.6 经典复刻站. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #444;">
+                本站仅提供游戏客户端整合资源分享，所有版权归 Valve Corporation 及相关版权方所有。
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function startDownload() {
+            // 模拟下载开始交互
+            const btn = document.querySelector('.download-btn');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "正在连接服务器...";
+            btn.style.backgroundColor = "#7f8c8d";
+            btn.style.cursor = "wait";
+            
+            setTimeout(() => {
+                btn.innerText = "下载已开始 (点击取消)";
+                btn.style.backgroundColor = "#27ae60";
+                btn.onclick = function() {
+                    alert("模拟下载已触发。在实际环境中，这里会跳转至真实的下载链接。");
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "";
+                    btn.style.cursor = "";
+                    btn.onclick = null;
+                };
+            }, 1500);
+        }
+
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
