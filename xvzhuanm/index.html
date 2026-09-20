@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xv转mp4格式转换器 - 高速无损视频格式转换与在线处理平台</title>
+    <meta name="description" content="提供专业的xv转mp4格式转换器，支持在线免费将xv格式视频快速转换为mp4标准格式。兼容Windows、Mac及移动端，操作简单，画质无损，无需安装任何软件，直接在浏览器中完成转换任务。">
+    <meta name="keywords" content="xv转mp4格式转换器, xv视频转mp4, 视频格式转换, 在线转换器, 视频压缩, 视频编辑工具">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-nav {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Converter Tool Card */
+        .converter-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--primary-color);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #eff6ff;
+            position: relative;
+        }
+
+        .drop-zone:hover, .drop-zone.dragover {
+            background-color: #dbeafe;
+            transform: scale(1.01);
+        }
+
+        .drop-zone-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            fill: var(--primary-color);
+        }
+
+        .drop-zone-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .drop-zone-subtext {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Progress Area */
+        .progress-area {
+            margin-top: 2rem;
+            display: none; /* Hidden by default */
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .action-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-sub);
+            color: var(--text-main);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* How to Section */
+        .how-to {
+            margin-top: 4rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            opacity: 0.2;
+            margin-bottom: -1rem;
+        }
+
+        .step h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* FAQ */
+        .faq {
+            margin-top: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 0.5rem;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .converter-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                </svg>
+                VideoConvert Pro
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">格式支持</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-nav">开始转换</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>xv转mp4格式转换器</h1>
+            <p>无需下载软件，在线极速将.xv视频文件转换为MP4格式，完美兼容主流播放器与设备。</p>
+        </section>
+
+        <section class="converter-card">
+            <div class="drop-zone" id="dropZone">
+                <input type="file" id="fileInput" class="file-input" accept=".xv">
+                <svg class="drop-zone-icon" viewBox="0 0 24 24">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                </svg>
+                <div class="drop-zone-text">点击选择文件 或 将 .xv 文件拖拽至此</div>
+                <div class="drop-zone-subtext">支持最大 500MB 文件，转换过程在浏览器本地完成，安全无忧</div>
+            </div>
+
+            <div class="progress-area" id="progressArea">
+                <div class="file-info">
+                    <span id="fileName">example.xv</span>
+                    <span id="fileStatus">准备中...</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="cancelBtn">取消</button>
+                    <button class="btn btn-primary" id="downloadBtn" style="display: none;">下载 MP4</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <h3>极速转换</h3>
+                <p>采用先进的编码技术，大幅缩短转换时间，无需长时间等待即可获得结果。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
+                <h3>本地处理</h3>
+                <p>数据不上传服务器，转换过程完全在您的浏览器中完成，保护隐私安全。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c0-1.66 1.34-3 3-3 .35 0 .69.07 1 .18V6h5v2h-3v7.03c-.02 1.64-1.35 2.97-3 2.97-1.66 0-3-1.34-3-3z"/>
+                    </svg>
+                </div>
+                <h3>兼容性强</h3>
+                <p>生成的MP4文件可在iPhone、Android、Windows Media Player及所有主流浏览器中播放。</p>
+            </div>
+        </section>
+
+        <section class="how-to">
+            <h2 class="section-title">使用指南</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>选择文件</h4>
+                    <p>在上方区域点击选择您的.xv视频文件，或直接将文件拖入框内。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>等待转换</h4>
+                    <p>系统将自动开始解析并转换为MP4格式，进度条显示当前状态。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>下载保存</h4>
+                    <p>转换完成后，点击“下载 MP4”按钮保存视频到本地设备。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-item">
+                <div class="faq-question">支持哪些操作系统？ <span>+</span></div>
+                <div class="faq-answer">本工具基于Web技术，支持Windows、macOS、Linux以及iOS和Android移动设备，无需安装任何额外软件。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">转换后的MP4画质会变差吗？ <span>+</span></div>
+                <div class="faq-answer">我们的转换器采用无损或高质量编码策略，在保证兼容性的前提下，最大程度保留原视频的清晰度。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">转换速度有多快？ <span>+</span></div>
+                <div class="faq-answer">速度取决于您的网络连接和文件大小。通常情况下，小文件转换仅需几秒钟。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">可以批量转换吗？ <span>+</span></div>
+                <div class="faq-answer">当前版本主要支持单文件转换以保证最佳性能和稳定性。建议逐个处理大文件。</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>VideoConvert Pro</h4>
+                <p style="font-size: 0.9rem; color: var(--text-sub);">致力于提供最便捷、安全的在线视频格式转换服务。</p>
+            </div>
+            <div class="footer-section">
+                <h4>产品功能</h4>
+                <ul>
+                    <li><a href="#">视频压缩</a></li>
+                    <li><a href="#">格式转换</a></li>
+                    <li><a href="#">在线剪辑</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>支持</h4>
+                <ul>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">服务条款</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="#">support@example.com</a></li>
+                    <li><a href="#">微信公众号</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 VideoConvert Pro. All rights reserved.
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // Simple interaction logic for the converter interface
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const progressArea = document.getElementById('progressArea');
+            const fileName = document.getElementById('fileName');
+            const fileStatus = document.getElementById('fileStatus');
+            const progressBar = document.getElementById('progressBar');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            
+            let isConverting = false;
+
+            // Drag and Drop effects
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('dragover'), false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
+            });
+
+            dropZone.addEventListener('drop', handleDrop, false);
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files), false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.name.toLowerCase().endsWith('.xv')) {
+                        startConversion(file);
+                    } else {
+                        alert('请上传 .xv 格式的视频文件');
+                    }
+                }
+            }
+
+            function startConversion(file) {
+                isConverting = true;
+                dropZone.style.display = 'none';
+                progressArea.style.display = 'block';
+                fileName.textContent = file.name;
+                fileStatus.textContent = '正在解析与编码...';
+                progressBar.style.width = '0%';
+
+                // Simulate conversion progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        fileStatus.textContent = '转换完成！';
+                        fileStatus.style.color = 'green';
+                        downloadBtn.style.display = 'inline-block';
+                        isConverting = false;
+                    }
+                    progressBar.style.width = progress + '%';
+                }, 300);
+            }
+
+            // FAQ Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Mock Download Action
+            downloadBtn.addEventListener('click', () => {
+                alert('演示模式：文件已成功转换。在实际应用中，此处将触发真实的MP4文件下载。');
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                isConverting = false;
+                progressArea.style.display = 'none';
+                dropZone.style.display = 'block';
+                fileInput.value = '';
+            });
+        });
+    </script>
+</body>
+  </html>
