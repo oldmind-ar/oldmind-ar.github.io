@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="冰霜长矛被动技能详解，包含技能效果、触发机制、连招技巧及实战应用指南。">
+    <meta name="keywords" content="冰霜长矛被动,英雄联盟,冰霜长矛,冰霜打击,游戏攻略,技能解析">
+    <title>冰霜长矛被动 - 技能效果与实战应用解析</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #3b82f6;
+            --ice-color: #a5f3fc;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border-radius: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 60%);
+            animation: pulse 10s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 核心机制卡片 */
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .mechanics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            color: var(--accent-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background: #f0f9ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 实战应用 */
+        .application-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-list {
+            list-style: none;
+        }
+
+        .app-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .app-list li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -8px;
+        }
+
+        .app-list strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            margin-bottom: 12px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: none;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 16px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-color);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--primary-color);
+            color: #94a3b8;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #334155;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none; /* 移动端简化导航 */
+            }
+
+            .mechanics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span>❄️</span> 游戏机制百科
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="active">技能解析</a>
+                    <a href="#">装备图鉴</a>
+                    <a href="#">符文搭配</a>
+                    <a href="#">出装推荐</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>冰霜长矛被动</h1>
+                <p>了解这一核心装备机制如何通过减速效果改变游戏节奏与团战策略</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- 核心机制 -->
+            <section class="mechanics-section">
+                <h2 class="section-title">核心机制解析</h2>
+                <div class="mechanics-grid">
+                    <article class="card">
+                        <div class="card-header">
+                            <div class="icon-box">1</div>
+                            <h3>触发条件</h3>
+                        </div>
+                        <p>当持有者使用普通攻击命中敌方英雄时，会对目标施加一层<strong>冰霜印记</strong>。该效果具有独立的冷却时间，确保技能释放的节奏感。</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            <div class="icon-box">2</div>
+                            <h3>减速效果</h3>
+                        </div>
+                        <p>每层印记会使目标移动速度降低 <strong>8%</strong>，最多叠加 3 层。这意味着如果攻击频率够快，可以持续提供高达 24% 的减速效果，极大限制敌方走位。</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            <div class="icon-box">3</div>
+                            <h3>独立冷却</h3>
+                        </div>
+                        <p>与其他装备的减速效果不同，该机制的冷却时间独立计算。这意味着玩家可以通过调整攻击间隔，灵活控制减速的持续时间与爆发力。</p>
+                    </article>
+                </div>
+
+                <div class="highlight">
+                    <strong>机制总结</strong>
+                    冰霜长矛被动本质上是一个<strong>攻击特效</strong>。它不提供额外的伤害，而是通过改变目标的移动状态来创造输出环境。对于缺乏硬控技能的射手来说，这是最可靠的追击与风筝手段。
+                </div>
+            </section>
+
+            <!-- 实战应用 -->
+            <section class="application-section">
+                <h2 class="section-title">实战应用指南</h2>
+                <ul class="app-list">
+                    <li>
+                        <strong>压制敌方走位</strong>
+                        在对线期，利用被动减速频繁点射，迫使敌方英雄不敢随意上前补刀或消耗，从而压制补刀发育空间。
+                    </li>
+                    <li>
+                        <strong>提高技能命中率</strong>
+                        对于依赖技能的射手（如卡莎、伊泽瑞尔），在技能命中后接普攻叠加被动，可以更轻松地留住目标。
+                    </li>
+                    <li>
+                        <strong>团战分割战场</strong>
+                        在团战切入时，通过持续的普攻施加减速，将敌方C位与团队分割，或将其逼向己方控制技能的覆盖范围。
+                    </li>
+                    <li>
+                        <strong>防止被反向风筝</strong>
+                        在追击残血敌人时，不要急于使用位移技能，保持普攻频率以确保减速层数不断档，防止被反打。
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 常见问题 -->
+            <section class="faq-section">
+                <h2 class="section-title">常见问题 (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">冰霜长矛的减速效果可以被净化移除吗？</div>
+                    <div class="faq-answer">不可以。冰霜长矛的减速效果属于装备攻击特效，不属于控制技能（CC），因此无法被净化、水银饰带或净化术移除。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">攻击特效类装备可以叠加吗？</div>
+                    <div class="faq-answer">不可以。在大多数版本中，同类型的攻击特效装备效果是互斥的。例如同时拥有冰霜长矛和斯塔缇克电刃时，只会保留其中一件的减速效果，或者根据具体装备规则保留伤害或减速。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">除了射手，其他位置适合出吗？</div>
+                    <div class="faq-answer">主要针对射手（ADC）。但在特定情况下，如打野位的刺客或战士，如果缺乏控制技能，也可以考虑作为功能性装备选择，但通常优先级低于输出装。</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 游戏机制百科 - 技能解析与攻略</p>
+            <p>本页面仅用于游戏机制科普，非官方游戏资料。</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 交互逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // 关闭其他已打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项状态
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
