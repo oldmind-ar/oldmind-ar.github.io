@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="帮mm解脱睡衣 - 时尚舒适睡衣选购指南，提供各类材质、款式及搭配建议，帮助您找到最适合的居家穿搭。">
+    <meta name="keywords" content="帮mm解脱睡衣,睡衣推荐,舒适家居服,女性睡衣,睡衣搭配">
+    <title>帮mm解脱睡衣 - 舒适家居服选购与搭配指南</title>
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --bg-color: #fdfdfd;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5649c0;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f3ff 0%, #fff0f5 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            padding-right: 120px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            padding: 0 25px;
+            border-radius: 25px;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 20px;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #eef2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .section-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .category-item:hover {
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.15);
+        }
+
+        .category-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .category-item h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        /* Product Showcase */
+        .showcase {
+            padding: 80px 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .btn-sm {
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            padding: 80px 20px;
+            background-color: #f0f4ff;
+        }
+
+        .guide-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .guide-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .guide-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .check-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .guide-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            padding: 20px 0;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #b2bec3;
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #636e72;
+            font-size: 0.9rem;
+            color: #b2bec3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .header-container {
+                padding: 0 15px;
+            }
+
+            nav ul {
+                display: none; /* Simplified for mobile */
+            }
+
+            .guide-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">帮mm<span>解脱睡衣</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#categories">分类</a></li>
+                    <li><a href="#showcase">推荐</a></li>
+                    <li><a href="#guide">选购指南</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>让肌肤自由呼吸，<br><span>帮mm解脱睡衣</span> 的舒适之旅</h1>
+                <p>告别束缚，拥抱柔软。我们提供专业的家居服选购建议与搭配方案，助您在夜间享受极致的放松体验。</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索材质、款式或场景...">
+                    <button class="btn btn-primary">搜索</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>纯棉亲肤</h3>
+                    <p>精选优质长绒棉，透气吸湿，温和亲肤，有效解决皮肤敏感问题。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3>无束缚设计</h3>
+                    <p>告别传统扣子与紧绷腰身，解放身体，让翻身不再受限。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>助眠功能</h3>
+                    <p>采用冰丝与莫代尔材质，触感冰凉，调节体温，提升睡眠质量。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">👗</div>
+                    <h3>时尚百搭</h3>
+                    <p>不仅是睡衣，更是居家休闲装。简约设计，适合各种生活场景。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section id="categories" class="categories">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">热门分类</h2>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600;">查看全部 &rarr;</a>
+                </div>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep1/300/200" alt="丝绸睡衣">
+                        <h4>丝绸系列</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep2/300/200" alt="纯棉家居服">
+                        <h4>纯棉家居服</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep3/300/200" alt="运动风睡衣">
+                        <h4>运动风睡衣</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep4/300/200" alt="情侣睡衣">
+                        <h4>情侣睡衣</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep5/300/200" alt="睡袍">
+                        <h4>长款睡袍</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://picsum.photos/seed/sleep6/300/200" alt="吊带睡裙">
+                        <h4>吊带睡裙</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase -->
+        <section id="showcase" class="showcase">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">精选推荐</h2>
+                </div>
+                <div class="product-grid">
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="tag">爆款</span>
+                            <img src="https://picsum.photos/seed/prod1/400/500" alt="冰丝无痕睡衣">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">冰丝无痕睡衣套装</h3>
+                            <p class="product-desc">采用3A级冰丝面料，触感丝滑，透气性极佳，告别黏腻。</p>
+                            <div class="product-meta">
+                                <span class="price">¥199</span>
+                                <button class="btn btn-outline btn-sm">查看详情</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img src="https://picsum.photos/seed/prod2/400/500" alt="高支棉家居服">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">高支棉居家套装</h3>
+                            <p class="product-desc">60支高支精梳棉，柔软厚实，不起球不掉色，耐洗耐穿。</p>
+                            <div class="product-meta">
+                                <span class="price">¥159</span>
+                                <button class="btn btn-outline btn-sm">查看详情</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="tag">新品</span>
+                            <img src="https://picsum.photos/seed/prod3/400/500" alt="莫代尔睡裙">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">莫代尔宽松睡裙</h3>
+                            <p class="product-desc">天然植物纤维，如云朵般轻盈，完美贴合曲线，解放束缚。</p>
+                            <div class="product-meta">
+                                <span class="price">¥129</span>
+                                <button class="btn btn-outline btn-sm">查看详情</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img src="https://picsum.photos/seed/prod4/400/500" alt="真丝睡袍">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">桑蚕丝睡袍</h3>
+                            <p class="product-desc">奢华桑蚕丝，自带光泽，亲肤润肤，提升居家生活品质。</p>
+                            <div class="product-meta">
+                                <span class="price">¥499</span>
+                                <button class="btn btn-outline btn-sm">查看详情</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="guide-section">
+            <div class="guide-content">
+                <div class="guide-text">
+                    <h2>如何科学“解脱”睡衣束缚？</h2>
+                    <p>很多用户在搜索“帮mm解脱睡衣”时，实际上是在寻找更舒适、更健康的穿着方式。传统的睡衣往往存在扣子磨皮肤、腰部紧绷等问题。</p>
+                    <p>本指南提供了一套从材质选择到版型设计的建议，帮助您找到最适合自己的家居服。</p>
+                    <ul class="check-list">
+                        <li>优先选择<strong>无痕剪裁</strong>，避免面料摩擦皮肤。</li>
+                        <li>根据季节选择<strong>透气材质</strong>（如真丝、莫代尔）。</li>
+                        <li>避免选择<strong>过于紧身的款式</strong>，影响血液循环。</li>
+                        <li>关注<strong>洗涤标签</strong>，保持面料柔软度。</li>
+                    </ul>
+                </div>
+                <div class="guide-image">
+                    <img src="https://picsum.photos/seed/comfy/600/400" alt="舒适的居家生活">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="faq">
+            <div class="section-header">
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">为什么推荐穿宽松睡衣？</div>
+                    <div class="faq-answer">
+                        <p>宽松的睡衣能减少对身体的压迫感，避免勒痕，同时有助于肌肉放松，提高睡眠质量。对于皮肤敏感的人群尤为重要。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">哪种材质最适合夏天？</div>
+                    <div class="faq-answer">
+                        <p>夏天推荐选择冰丝、亚麻或莫代尔材质。这些材质导热快，触感凉爽，能有效排汗降温。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何判断睡衣是否舒适？</div>
+                    <div class="faq-answer">
+                        <p>主要看面料是否亲肤、透气，以及剪裁是否贴合身体曲线但不过于紧绷。好的睡衣应该像第二层皮肤一样自然。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">睡衣需要经常更换吗？</div>
+                    <div class="faq-answer">
+                        <p>建议每天更换。贴身衣物容易滋生细菌，保持清洁是皮肤健康的第一步。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>帮mm解脱睡衣</h4>
+                <p style="color: #b2bec3; font-size: 0.9rem; line-height: 1.8;">
+                    专注于提供高品质、舒适健康的家居服解决方案。让每一次睡眠都成为享受。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">尺码指南</a></li>
+                    <li><a href="#">退换货政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">物流查询</a></li>
+                    <li><a href="#">联系客服</a></li>
+                    <li><a href="#">意见反馈</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <p style="color: #b2bec3; font-size: 0.9rem;">
+                    获取最新优惠与时尚资讯<br>
+                    微信公众号：帮mm解放计划
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 帮mm解脱睡衣 版权所有.
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // FAQ Toggle Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
